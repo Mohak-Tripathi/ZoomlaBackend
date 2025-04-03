@@ -1,0 +1,70 @@
+# services:
+#   backend:
+#     build: .
+#     container_name: backend_container
+#     ports:
+#       - "4000:4000"
+#     environment:
+#       - DATABASE_URL=postgres://myuser:test_password@db:5432/mydatabase
+#     volumes:
+#       - .:/app
+#       - /app/node_modules
+#     depends_on:
+#       - db
+#     command: npm run dev  # Start backend
+
+#   db:
+#     image: postgres:15-alpine
+#     container_name: postgres_container
+#     restart: always
+#     environment:
+#       POSTGRES_USER: myuser
+#       POSTGRES_PASSWORD: test_password
+#       POSTGRES_DB: mydatabase  # This ensures the DB is created
+#     ports:
+#       - "5432:5432"
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+
+# volumes:
+#   postgres_data:
+
+
+
+
+# version: "3.8"
+
+services:
+  backend:
+    build: .
+    container_name: backend_container_zoomla
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_NAME=zoomla
+      - DB_USER=postgres
+      - DB_PASSWORD=password
+      - DB_HOST=db  # Must match service name
+      - DB_PORT=5432
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - db
+    command: npm run dev  # Start backend
+
+  db:
+    image: postgres:15-alpine
+    container_name: postgres_container_zoomla
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: zoomla
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
