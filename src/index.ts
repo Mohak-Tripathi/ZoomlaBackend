@@ -58,6 +58,8 @@ import { sequelize, testDatabaseConnection } from "./config/database";
 import properties from "./api/routes/properties";
 import userRoutes from "./api/routes/userRoutes";
 
+import reviewRoutes from "./api/routes/reviewRoutes";
+
 
 
 
@@ -75,21 +77,38 @@ app.use(express.json());
 // testDatabaseConnection();
 
 
-const syncDatabase = async () => {
-    try {
-      await sequelize.sync({ alter: true }); // Sync models with database
-      console.log("✅ Database synchronized successfully.");
-    } catch (error) {
-      console.error("❌ Error syncing database:", error);
-    }
-  };
+// const syncDatabase = async () => {
+//     try {
+//       await sequelize.sync({ alter: true }); // Sync models with database
+//       console.log("✅ Database synchronized successfully.");
+//     } catch (error) {
+//       console.error("❌ Error syncing database:", error);
+//     }
+//   };
   
-  // Sync DB after testing the connection
-  testDatabaseConnection().then(syncDatabase);
+//   // Sync DB after testing the connection
+//   testDatabaseConnection().then(syncDatabase);
+
+
+
+// 💡 This should be before sync or route usage
+
+
+// Now connect & sync
+testDatabaseConnection().then(async () => {
+  await sequelize.sync({ alter: true });
+  console.log("✅ Database synchronized successfully.");
+});
 
 // Routes
 app.use("/api/v1/properties", properties);
 app.use("/api/v1/auth", userRoutes);
+
+
+
+
+// After user/property routes
+app.use("/api/v1/reviews", reviewRoutes);
 
 
 

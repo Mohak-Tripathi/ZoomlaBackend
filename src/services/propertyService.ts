@@ -15,8 +15,14 @@ class PropertyService {
     return await this.repository.findAll();
   }
 
-  async getPropertyById(id: string) {
-    const property = await this.repository.findById(id);
+//   async getPropertyById(id: string) {
+//     const property = await this.repository.findById(id);
+//     if (!property) throw new Error("Property not found");
+//     return property;
+//   }
+
+  async getSinglePropertyById(id: string) {
+    const property = await this.repository.findPropertyById(id);
     if (!property) throw new Error("Property not found");
     return property;
   }

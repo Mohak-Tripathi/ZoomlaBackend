@@ -77,6 +77,9 @@ class Property
     Property.belongsTo(models.User, { foreignKey: "user_id" });
     Property.hasMany(models.Review, { foreignKey: "property_id" });
   }
+
+
+  
 }
 
 Property.init(
