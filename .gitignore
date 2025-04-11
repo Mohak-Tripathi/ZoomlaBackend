@@ -1,1 +1,4 @@
 node_modules/
+# Ignore Firebase secrets
+src/config/firebaseServiceAccountKey.json
+dist/config/firebaseServiceAccountKey.json
