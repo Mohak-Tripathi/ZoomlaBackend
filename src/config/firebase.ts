@@ -14,6 +14,17 @@ export default admin;
 
 
 
+//.env
+
+// # Database Config
+// DB_HOST=db
+// DB_PORT=5432
+// DB_USER=postgres
+// DB_PASSWORD=Mohak@@1914
+// DB_NAME=zoomla
+// JWT_SECRET=Mohak123
+
+
 // firebaseServiceAccountKey.json inside config folder
 // {
 //   "type": "service_account",
